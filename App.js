@@ -46,6 +46,7 @@ export default class CatList extends React.Component {
         <FlatList
           data={this.state.data}
           renderItem={item => this.renderItemComponent(item)}
+          keyExtractor={item.id.toString()}
         />
       </SafeAreaView>)
   }
