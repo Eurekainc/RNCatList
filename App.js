@@ -20,6 +20,7 @@ export default class CatList extends React.Component {
     super(props);
     this.state = {
       data: [],
+      refreshing: true,
     }
   }
 
@@ -28,12 +29,16 @@ export default class CatList extends React.Component {
   }
 
   fetchCats() {
+    this.setState({ refreshing: true });
     fetch('https://api.thecatapi.com/v1/images/search?limit=10&page=1') // 1
       .then(res => res.json())
       .then(resJson => {
         this.setState({ data: resJson });
-        console.log("response is " + resJson);
-      }).catch(e => console.log(e));
+        this.setState({ refreshing: false });
+      }).catch(e => {
+        console.log(e);
+        this.setState({ refreshing: false });
+      });
   }
 
   ItemSeparator = () => <View style={{
@@ -48,6 +53,10 @@ export default class CatList extends React.Component {
       <Image style={styles.image} source={{ uri: data.item.url }} />
     </TouchableOpacity>
 
+  handleRefresh = () => {
+    this.setState({ refreshing: false }, () => { this.fetchCats() });
+  }
+
   render() {
     return (
       <SafeAreaView>
@@ -56,6 +65,8 @@ export default class CatList extends React.Component {
           renderItem={item => this.renderItemComponent(item)}
           keyExtractor={item => item.id.toString()}
           ItemSeparatorComponent={this.ItemSeparator}
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
         />
       </SafeAreaView>)
   }
