@@ -10,6 +10,7 @@ import {
   StyleSheet,
   SafeAreaView,
   FlatList,
+  View,
   Image,
   TouchableOpacity
 } from "react-native";
@@ -35,6 +36,13 @@ export default class CatList extends React.Component {
       }).catch(e => console.log(e));
   }
 
+  ItemSeparator = () => <View style={{
+    height: 2,
+    backgroundColor: "rgba(0,0,0,0.5)",
+    marginLeft: 10,
+    marginRight: 10,
+  }} />
+
   renderItemComponent = (data) =>
     <TouchableOpacity style={styles.container}>
       <Image style={styles.image} source={{ uri: data.item.url }} />
@@ -47,6 +55,7 @@ export default class CatList extends React.Component {
           data={this.state.data}
           renderItem={item => this.renderItemComponent(item)}
           keyExtractor={item => item.id.toString()}
+          ItemSeparatorComponent={this.ItemSeparator}
         />
       </SafeAreaView>)
   }
