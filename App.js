@@ -15,7 +15,7 @@ import {
   TouchableOpacity
 } from "react-native";
 
-export default class CatList extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
