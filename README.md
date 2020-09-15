@@ -4,7 +4,19 @@ A react-native app to display an awesome list with great inbuilt features.
 
 Introduction
 ------------
+The `CatList.js` compoenent contains the logic to construct and display FlatList. The `App.js` uses the `CatList.js`. Addtionally, it include:
 
+- FlatList UI compoents to decorate the list.
+- `fetch` request to download data from the [TheCatsAPI](https://thecatapi.com).
+- Card style.
+– Platform style for shadow.
+- Recommende codebase structure.
+
+Output
+---------
+| iOS | Android |
+|-------------------- | ------------------ |
+| <img src="/screenshots/CatListiOS.png" width="250" height="500"/> | <img src="/screenshots/CatListAndroid.jpg" width="250" height="500"/> |
 
 License
 -----------
